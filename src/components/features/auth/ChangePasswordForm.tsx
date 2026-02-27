@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -27,6 +28,10 @@ const changePasswordSchema = z
 type ChangePasswordFormData = z.infer<typeof changePasswordSchema>;
 
 export default function ChangePasswordForm() {
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const form = useForm<ChangePasswordFormData>({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: {
@@ -50,7 +55,8 @@ export default function ChangePasswordForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
+        {/* currentPassword */}
         <FormField
           control={form.control}
           name="currentPassword"
@@ -58,13 +64,32 @@ export default function ChangePasswordForm() {
             <FormItem>
               <FormLabel>Current Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="Enter current password" {...field} />
+                <div className="relative">
+                  <Input
+                    type={showCurrentPassword ? 'text' : 'password'}
+                    placeholder="Enter current password"
+                    {...field}
+                    className="pr-10 font-normal placeholder:text-[#B3B3B3] md:text-[16px]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                    className="absolute top-1/2 right-3 -translate-y-1/2 focus:outline-none"
+                  >
+                    <img
+                      src={`/Images/${showCurrentPassword ? 'closed-eye.png' : 'eye.png'}`}
+                      alt={showCurrentPassword ? 'Hide password' : 'Show password'}
+                      className="h-5 w-5"
+                    />
+                  </button>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
+        {/* newPassword */}
         <FormField
           control={form.control}
           name="newPassword"
@@ -72,13 +97,32 @@ export default function ChangePasswordForm() {
             <FormItem>
               <FormLabel>New Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="Enter new password" {...field} />
+                <div className="relative">
+                  <Input
+                    type={showNewPassword ? 'text' : 'password'}
+                    placeholder="Enter new password"
+                    {...field}
+                    className="pr-10 font-normal placeholder:text-[#B3B3B3] md:text-[16px]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                    className="absolute top-1/2 right-3 -translate-y-1/2 focus:outline-none"
+                  >
+                    <img
+                      src={`/Images/${showNewPassword ? 'closed-eye.png' : 'eye.png'}`}
+                      alt={showNewPassword ? 'Hide password' : 'Show password'}
+                      className="h-5 w-5"
+                    />
+                  </button>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
+        {/* confirmPassword */}
         <FormField
           control={form.control}
           name="confirmPassword"
@@ -86,14 +130,36 @@ export default function ChangePasswordForm() {
             <FormItem>
               <FormLabel>Confirm New Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="Confirm new password" {...field} />
+                <div className="relative">
+                  <Input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    placeholder="Confirm new password"
+                    {...field}
+                    className="pr-10 font-normal placeholder:text-[#B3B3B3] md:text-[16px]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute top-1/2 right-3 -translate-y-1/2 focus:outline-none"
+                  >
+                    <img
+                      src={`/Images/${showConfirmPassword ? 'closed-eye.png' : 'eye.png'}`}
+                      alt={showConfirmPassword ? 'Hide password' : 'Show password'}
+                      className="h-5 w-5"
+                    />
+                  </button>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
+        <Button
+          type="submit"
+          className="font-poppins w-full bg-[#6C63FF]"
+          disabled={form.formState.isSubmitting}
+        >
           {form.formState.isSubmitting ? 'Changing Password...' : 'Change Password'}
         </Button>
       </form>

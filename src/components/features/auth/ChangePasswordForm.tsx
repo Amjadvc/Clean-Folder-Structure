@@ -62,19 +62,21 @@ export default function ChangePasswordForm() {
           name="currentPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Current Password</FormLabel>
+              <FormLabel className="font-inter text-[16px] font-normal text-[#1E1E1E]!">
+                Current Password
+              </FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
                     type={showCurrentPassword ? 'text' : 'password'}
                     placeholder="Enter current password"
                     {...field}
-                    className="pr-10 font-normal placeholder:text-[#B3B3B3] md:text-[16px]"
+                    className="h-12 rounded-lg border-[#D9D9D9] py-3 pr-10 pl-4 font-normal text-[#666666] placeholder:text-[#B3B3B3] md:text-[16px]"
                   />
                   <button
                     type="button"
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                    className="absolute top-1/2 right-3 -translate-y-1/2 focus:outline-none"
+                    className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer focus:outline-none"
                   >
                     <img
                       src={`/Images/${showCurrentPassword ? 'closed-eye.png' : 'eye.png'}`}
@@ -95,19 +97,21 @@ export default function ChangePasswordForm() {
           name="newPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>New Password</FormLabel>
+              <FormLabel className="font-inter text-[16px] font-normal text-[#1E1E1E]!">
+                New Password
+              </FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
                     type={showNewPassword ? 'text' : 'password'}
                     placeholder="Enter new password"
                     {...field}
-                    className="pr-10 font-normal placeholder:text-[#B3B3B3] md:text-[16px]"
+                    className="h-12 rounded-lg border-[#D9D9D9] py-3 pr-10 pl-4 font-normal text-[#666666] placeholder:text-[#B3B3B3] md:text-[16px]"
                   />
                   <button
                     type="button"
                     onClick={() => setShowNewPassword(!showNewPassword)}
-                    className="absolute top-1/2 right-3 -translate-y-1/2 focus:outline-none"
+                    className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer focus:outline-none"
                   >
                     <img
                       src={`/Images/${showNewPassword ? 'closed-eye.png' : 'eye.png'}`}
@@ -128,19 +132,21 @@ export default function ChangePasswordForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm New Password</FormLabel>
+              <FormLabel className="font-inter text-[16px] font-normal text-[#1E1E1E]!">
+                Confirm New Password
+              </FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Confirm new password"
                     {...field}
-                    className="pr-10 font-normal placeholder:text-[#B3B3B3] md:text-[16px]"
+                    className="h-12 rounded-lg border-[#D9D9D9] py-3 pr-10 pl-4 font-normal text-[#666666] placeholder:text-[#B3B3B3] md:text-[16px]"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute top-1/2 right-3 -translate-y-1/2 focus:outline-none"
+                    className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer focus:outline-none"
                   >
                     <img
                       src={`/Images/${showConfirmPassword ? 'closed-eye.png' : 'eye.png'}`}
@@ -157,7 +163,7 @@ export default function ChangePasswordForm() {
 
         <Button
           type="submit"
-          className="font-poppins w-full bg-[#6C63FF]"
+          className="font-poppins mt-12.5 flex h-12 w-full cursor-pointer items-center justify-center rounded-none! bg-[#6C63FF] px-2.5 py-3 text-[18px] hover:bg-[#635cf1]"
           disabled={form.formState.isSubmitting}
         >
           {form.formState.isSubmitting ? 'Changing Password...' : 'Change Password'}
